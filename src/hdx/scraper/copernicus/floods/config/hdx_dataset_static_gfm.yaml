@@ -1,0 +1,15 @@
+license_id: cc-by
+methodology: Other
+methodology_other: >-
+  The GFM Product Definition Document can be found [here](https://extwiki.eodc.eu/GFM/PDD).
+dataset_source: Copernicus
+package_creator: HDX Data Systems Team
+private: False
+maintainer: 196196be-6037-4488-8b71-d786adf4c081
+owner_org:  47677055-92e2-4f68-bf1b-5d570f27e791
+data_update_frequency: 1
+caveats: >-
+  Data sourced from the Global Flood Monitoring
+  ([GFM](https://extwiki.eodc.eu/en/GFM)) system, a component of the Copernicus
+  Emergency Management Service (CEMS). Data has been downloaded from the GFM WMS
+  service and may constitute derivative data.

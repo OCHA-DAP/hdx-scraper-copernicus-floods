@@ -1,0 +1,16 @@
+license_id: cc-by
+methodology: Other
+methodology_other: >-
+  More information on GloFAS models and procedures can be found
+  [here](https://confluence.ecmwf.int/spaces/CEMS/pages/265028595/GloFAS+models+and+procedures).
+dataset_source: Copernicus
+package_creator: HDX Data Systems Team
+private: False
+maintainer: 196196be-6037-4488-8b71-d786adf4c081
+owner_org:  47677055-92e2-4f68-bf1b-5d570f27e791
+data_update_frequency: 1
+caveats: >-
+  Data sourced from the Global Flood Awareness System
+  ([GloFAS](https://confluence.ecmwf.int/spaces/CEMS/pages/265028594/Global+Flood+Awareness+System)),
+  a component of the Copernicus Emergency Management Service (CEMS). Data has been
+  downloaded from the GloFAS WMS service and may constitute derivative data.

@@ -1,0 +1,127 @@
+# Collector specific configuration
+glofas_url: "https://ows.globalfloods.eu/glofas-ows/ows.py"
+gfm_url: "https://geoserver.gfm.eodc.eu/geoserver/gfm/wms"
+bbox: "-90.0,-180.0,90.0,180.0" # Global extent, WMS 1.3.0 EPSG:4326 axis order (minLat,minLon,maxLat,maxLon)
+width: 3600
+height: 1800
+
+datasets:
+  glofas_forecast:
+    name: "copernicus-glofas-flood-forecast"
+    title: "Global - GloFAS Flood Forecast"
+    notes: |-
+      The Global Flood Awareness System (GloFAS) is a component of the Copernicus Emergency
+      Management Service providing global hydrological forecasts. This dataset contains daily
+      raster GeoTIFFs derived from ECMWF ensemble streamflow predictions.
+
+      Return period exceedance layers show the probability (%) that river discharge will exceed
+      the 5-year or 20-year return period threshold at any point within the forecast horizon.
+      Flood summary layers combine 2-, 5-, and 20-year exceedance probabilities into categorical
+      flood alert information for different forecast windows (days 1-3, 4-10, 11-15).
+
+      RapidFloodMapping and RapidImpactAssessment are experimental products providing estimated
+      flood extent at 1 km resolution and potential impact on population and land use.
+    resource_name: "copernicus_glofas_forecast"
+    source: "glofas"
+    method: "wms"
+    format: "image/tiff"
+    ext: "geotiff"
+    tags: [ "climate hazards", "flooding", "forecasting", "hazards and risk" ]
+    layers:
+      flood_summary_1_3:
+        layer: "sumAL41EGE"
+        description: "Flood Summary Days 1-3"
+      flood_summary_4_10:
+        layer: "sumAL42EGE"
+        description: "Flood Summary Days 4-10"
+      flood_summary_11_15:
+        layer: "sumAL43EGE"
+        description: "Flood Summary Days 11-15"
+      return_period_5yr:
+        layer: "sumALHEGE"
+        description: "5-Year Return Period Exceedance Probability"
+      return_period_20yr:
+        layer: "sumALEEGE"
+        description: "20-Year Return Period Exceedance Probability"
+      rapid_flood_mapping:
+        layer: "RapidFloodMapping"
+        description: "Rapid Flood Mapping - Estimated Flood Extent (Experimental)"
+      rapid_impact_assessment:
+        layer: "RapidImpactAssessment"
+        description: "Rapid Impact Assessment - Population and Land Use (Experimental)"
+
+  glofas_initial_conditions:
+    name: "copernicus-glofas-initial-conditions"
+    title: "Global - GloFAS Initial Conditions"
+    notes: |-
+      The Global Flood Awareness System (GloFAS) initial conditions describe the
+      hydrometeorological state of the land surface that drives the hydrological forecast
+      model. This dataset contains daily raster GeoTIFFs for precipitation accumulation,
+      snow melt, snow cover, and soil moisture.
+
+      Anomaly layers show deviation from climatological norms and help identify conditions
+      that may precondition basins for flooding or drought.
+    resource_name: "copernicus_glofas_initial_conditions"
+    source: "glofas"
+    method: "wms"
+    format: "image/tiff"
+    ext: "geotiff"
+    tags: [ "climate hazards", "flooding", "hazards and risk" ]
+    layers:
+      precip_3d:
+        layer: "precip3Days"
+        description: "3-Day Accumulated Precipitation"
+      precip_3d_anomaly:
+        layer: "precip3DaysAnomaly"
+        description: "3-Day Accumulated Precipitation Anomaly"
+      snow_melt_3d:
+        layer: "snowMelt3Days"
+        description: "3-Day Snow Melt"
+      snow_cover:
+        layer: "snowCoverInst"
+        description: "Instantaneous Snow Cover"
+      soil_moisture:
+        layer: "soilMoistureInst"
+        description: "Instantaneous Soil Moisture"
+      soil_moisture_anomaly:
+        layer: "soilMoistureInstAnomaly"
+        description: "Instantaneous Soil Moisture Anomaly"
+
+  gfm_monitoring:
+    name: "copernicus-gfm-flood-monitoring"
+    title: "Global - GFM Flood Monitoring"
+    notes: |-
+      The Global Flood Monitoring (GFM) system provides near-real-time satellite-based flood
+      detection using Sentinel-1 Synthetic Aperture Radar (SAR) imagery, operated as part of
+      the Copernicus Emergency Management Service.
+
+      Data is updated continuously as new Sentinel-1 acquisitions become available. This
+      dataset represents the latest available observations at the time of download.
+
+      The observed flood extent layer shows inundated areas detected by the SAR sensor.
+      The observed water extent includes both flood water and permanent water bodies.
+      Affected population and landcover layers quantify the humanitarian and environmental
+      impact within flooded areas. The likelihood values layer provides per-pixel confidence
+      estimates for the flood detection.
+    resource_name: "copernicus_gfm_monitoring"
+    source: "gfm"
+    method: "wms"
+    format: "image/geotiff"
+    ext: "geotiff"
+    tags: [ "climate hazards", "flooding", "hazards and risk" ]
+    layers:
+      observed_flood_extent:
+        layer: "observed_flood_extent"
+        description: "Observed Flood Extent"
+      observed_water_extent:
+        layer: "observed_water_extent"
+        description: "Observed Water Extent"
+      affected_population:
+        layer: "affected_population"
+        description: "Affected Population"
+      affected_landcover:
+        layer: "affected_landcover"
+        description: "Affected Landcover"
+      likelihood_values:
+        layer: "uncertainty_values"
+        description: "Flood Detection Likelihood Values"
